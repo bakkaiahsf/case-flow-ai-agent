@@ -1,8 +1,8 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Scale, Plus, FileText, Calendar, TrendingUp, Award, LogOut, ArrowRight } from 'lucide-react';
-import { useAuth } from '@/hooks/useAuth';
+import { Scale, FileText, Calendar, TrendingUp, Award, ArrowRight } from 'lucide-react';
 import CaseWorkflow from '@/components/case/CaseWorkflow';
 
 interface DashboardProps {
@@ -10,14 +10,9 @@ interface DashboardProps {
 }
 
 const Dashboard = ({ caseType }: DashboardProps) => {
-  const { signOut } = useAuth();
   const [currentCaseType, setCurrentCaseType] = useState(caseType);
   const [showWorkflow, setShowWorkflow] = useState(false);
   const [selectedWorkflowType, setSelectedWorkflowType] = useState<'probate' | 'divorce'>('probate');
-
-  const handleSignOut = async () => {
-    await signOut();
-  };
 
   const getCaseTypeTitle = (type: string) => {
     switch (type) {
@@ -67,10 +62,6 @@ const Dashboard = ({ caseType }: DashboardProps) => {
                 >
                   ← Back to Dashboard
                 </Button>
-                <Button variant="outline" size="sm" onClick={handleSignOut}>
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Sign Out
-                </Button>
               </div>
             </div>
           </div>
@@ -111,11 +102,6 @@ const Dashboard = ({ caseType }: DashboardProps) => {
                   <SelectItem value="mixed">Mixed Practice</SelectItem>
                 </SelectContent>
               </Select>
-
-              <Button variant="outline" size="sm" onClick={handleSignOut}>
-                <LogOut className="w-4 h-4 mr-2" />
-                Sign Out
-              </Button>
             </div>
           </div>
         </div>
